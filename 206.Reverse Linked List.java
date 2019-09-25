@@ -9,10 +9,10 @@ public ListNode reverseList(ListNode head) {
 
 Complexity analysis
 
-Time complexity : O(n)O(n). Assume that nn is the list's length, 
+Time complexity : O(n)O(n). Assume that nn is the list length,
 the time complexity is O(n)O(n).
 
-Space complexity : O(n)O(n). The extra space comes from implicit 
+Space complexity : O(n)O(n). The extra space comes from implicit
 stack space due to recursion. The recursion could go up to nn levels deep.
 
 
