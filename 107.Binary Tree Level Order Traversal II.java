@@ -3,9 +3,9 @@ public class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         List<List<Integer>> wrapList = new LinkedList<List<Integer>>();
-        
+
         if(root == null) return wrapList;
-        
+
         queue.offer(root);
         while(!queue.isEmpty()){
             int levelNum = queue.size();
@@ -28,7 +28,7 @@ public class Solution {
             levelMaker(wrapList, root, 0);
             return wrapList;
         }
-        
+
         public void levelMaker(List<List<Integer>> list, TreeNode root, int level) {
             if(root == null) return;
             if(level >= list.size()) {
@@ -56,3 +56,51 @@ private void addLevel(LinkedList<List<Integer>> list, int level, TreeNode node) 
     addLevel(list, level+1, node.left);
     addLevel(list, level+1, node.right);
 }
+
+
+
+//solution 3
+public List<List<Integer>> levelOrderBottom(TreeNode root) {
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        if(root == null)
+        {
+            return result;
+        }
+
+        Stack<List<Integer>> stack = new Stack<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while(!queue.isEmpty())
+        {
+            int currentQueueSize = queue.size();
+            List<Integer> level = new ArrayList<>();
+            while(currentQueueSize != 0)
+            {
+                TreeNode node = queue.remove();
+                level.add(node.val);
+                currentQueueSize--;
+
+                if(node.left != null)
+                {
+                    queue.add(node.left);
+                }
+
+                if(node.right != null)
+                {
+                    queue.add(node.right);
+                }
+            }
+
+            stack.push(level);
+        }
+
+        while(!stack.isEmpty())
+        {
+            result.add(stack.pop());
+        }
+
+        return result;
+    }
